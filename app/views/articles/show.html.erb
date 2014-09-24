@@ -3,6 +3,8 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
+
+
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @article.title %></dd>
@@ -10,6 +12,10 @@
   <dd><%= @article.body %></dd>
   <dt><strong><%= model_class.human_attribute_name(:comment) %>:</strong></dt>
   <dd><%= @article.comment %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fromdate) %>:</strong></dt>
+  <dd><%= @article.fromdate %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:origin) %>:</strong></dt>
+  <dd><%= @article.getOriginValue(@article.origin) %></dd>
 </dl>
 
 <div class="form-actions">

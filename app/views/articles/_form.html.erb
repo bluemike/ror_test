@@ -1,27 +1,29 @@
-<%= form_for @article, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :title, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :title, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :body, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :body, :class => 'text_area' %>
-    </div>
-  </div>
+<%= simple_form_for @article, url: articles_path, html: { class: 'form-horizontal' },
+                    wrapper: :horizontal_form,
+                    wrapper_mappings: {
+                            check_boxes: :horizontal_radio_and_checkboxes,
+                            radio_buttons: :horizontal_radio_and_checkboxes,
+                            file: :horizontal_file_input,
+                            boolean: :horizontal_boolean
+                    } do |f| %>
 
-  <div class="control-group">
-    <%= f.label :comment, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :comment, :class => 'text_area' %>
-    </div>
-  </div>
+    <%= f.error_notification %>
 
-    <div class="form-actions">
+
+    <%= f.text_field :title, placeholder: 'Title' %>
+    <%= f.text_area :body, placeholder: 'Body' %>
+    <%= f.text_area :comment, placeholder: 'Comment' %>
+
+    <%= f.input :fromdate %>
+
+    <%= f.select :origin, Article::ORIGIN_VALUES, placeholder: 'Origin' %>
+
+
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 articles_path, :class => 'btn' %>
-  </div>
+
 <% end %>
+
+
+

@@ -5,10 +5,13 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      article = new Article
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:body) %></th>
       <th><%= model_class.human_attribute_name(:comment) %></th>
+      <th><%= model_class.human_attribute_name(:fromdate) %></th>
+      <th><%= model_class.human_attribute_name(:origin) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -20,6 +23,8 @@
         <td><%= article.title %></td>
         <td><%= article.body %></td>
         <td><%= article.comment %></td>
+        <td><%= article.fromdate %></td>
+        <td><%= article.getOriginValue(article.origin) %></td>
         <td><%=l article.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -38,3 +43,5 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_article_path,
             :class => 'btn btn-primary' %>
+
+<%= will_paginate @articles, class: '.pager' %>
